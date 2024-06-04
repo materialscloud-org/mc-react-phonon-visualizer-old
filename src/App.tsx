@@ -2,8 +2,8 @@ import { Tab, Tabs } from "react-bootstrap";
 
 
 import AboutPage from "./pages/about/AboutPage";
-import AcknowledgePage from "./pages/AcknowledgePage";
-import PhononsPage from "./pages/PhononsPage";
+import AcknowledgePage from "./pages/acknowledge/AcknowledgePage";
+import PhononsPage from "./pages/phonons/PhononsPage";
 
 import "./App.scss";
 

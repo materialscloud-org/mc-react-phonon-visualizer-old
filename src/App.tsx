@@ -8,7 +8,7 @@ import {
 
 import RoutedTabs from "./components/RoutedTabs";
 
-import AboutPage from "./pages/AboutPage";
+import AboutPage from "./pages/about/AboutPage";
 import AcknowledgePage from "./pages/AcknowledgePage";
 import PhononsPage from "./pages/PhononsPage";
 

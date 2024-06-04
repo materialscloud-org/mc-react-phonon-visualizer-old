@@ -1,36 +1,34 @@
 import { useState } from "react";
 
-import SelectPage from "./SelectPage";
-import VisualizerPage from "./VisualizerPage";
+import SelectPanel from "./select/SelectPanel";
+import VisualizerPanel from "./visualize/VisualizerPanel";
 
-import "./styles.scss";
-
-const PhononsPage = ({
+const PhononsPanel = ({
   aboutLinkHandler,
 }: {
   aboutLinkHandler: CallableFunction;
 }) => {
-  const [currentPage, setCurrentPage] = useState("select");
+  const [currentPanel, setCurrentPanel] = useState("select");
 
   const formHandler = (event: React.FormEvent<HTMLFormElement>) => {
     // TODO pass form info to visualizer
     console.log("Submitted");
     event.preventDefault();
-    setCurrentPage("visualizer");
+    setCurrentPanel("visualizer");
   };
 
   return (
     <>
-      {currentPage == "select" ? (
-        <SelectPage
+      {currentPanel == "select" ? (
+        <SelectPanel
           aboutLinkHandler={aboutLinkHandler}
           formHandler={formHandler}
         />
       ) : (
-        <VisualizerPage callback={() => setCurrentPage("select")} />
+        <VisualizerPanel callback={() => setCurrentPanel("select")} />
       )}
     </>
   );
 };
 
-export default PhononsPage;
+export default PhononsPanel;

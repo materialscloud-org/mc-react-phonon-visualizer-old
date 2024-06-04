@@ -1,6 +1,6 @@
-const AcknowledgePage = () => {
+const AcknowledgePanel = () => {
   return (
-    <div className="">
+    <>
       <p>
         This tool is based on the{" "}
         <a
@@ -37,8 +37,8 @@ const AcknowledgePage = () => {
         </a>{" "}
         for the implementation of this tool.
       </p>
-    </div>
+    </>
   );
 };
 
-export default AcknowledgePage;
+export default AcknowledgePanel;

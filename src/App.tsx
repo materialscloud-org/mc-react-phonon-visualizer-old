@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 
-import AboutPage from "./pages/about/AboutPage";
-import AcknowledgePage from "./pages/acknowledge/AcknowledgePage";
-import PhononsPage from "./pages/phonons/PhononsPage";
+import AboutPanel from "./components/about/AboutPanel";
+import AcknowledgePanel from "./components/acknowledge/AcknowledgePanel";
+import PhononsPanel from "./components/phonons/PhononsPanel";
 
 import "./App.scss";
 
@@ -29,13 +29,13 @@ function App() {
       }}
     >
       <Tab eventKey="phonons" title="Phonons">
-        <PhononsPage aboutLinkHandler={showAboutSection} />
+        <PhononsPanel aboutLinkHandler={showAboutSection} />
       </Tab>
       <Tab eventKey="about" title="About">
-        <AboutPage focusSection={focusSection} />
+        <AboutPanel focusSection={focusSection} />
       </Tab>
       <Tab eventKey="acknowledge" title="Acknowledgements">
-        <AcknowledgePage />
+        <AcknowledgePanel />
       </Tab>
     </Tabs>
   );

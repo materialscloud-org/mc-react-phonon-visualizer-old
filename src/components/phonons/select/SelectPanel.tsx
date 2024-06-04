@@ -1,9 +1,11 @@
 import { Card, Col, Row } from "react-bootstrap";
 
-import ExampleSelector from "../../components/ExampleSelector";
-import FileSelector from "../../components/FileSelector";
+import ExampleSelector from "./ExampleSelector";
+import FileSelector from "./FileSelector";
 
-const SelectPage = ({
+import "./styles.scss";
+
+const SelectPanel = ({
   aboutLinkHandler,
   formHandler,
 }: {
@@ -11,7 +13,7 @@ const SelectPage = ({
   formHandler: React.FormEventHandler<HTMLElement>;
 }) => {
   return (
-    <Row className="selectors g-4">
+    <Row className="g-4">
       <Col xxl="6">
         <Card>
           <Card.Header>Upload your files</Card.Header>
@@ -35,4 +37,4 @@ const SelectPage = ({
   );
 };
 
-export default SelectPage;
+export default SelectPanel;

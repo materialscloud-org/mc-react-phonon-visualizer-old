@@ -2,14 +2,14 @@ import { useEffect } from "react";
 
 import "./styles.scss";
 
-const AboutPage = ({ focusSection }: { focusSection: string | null }) => {
+const AboutPanel = ({ focusSection }: { focusSection: string | null }) => {
   useEffect(() => {
     const section = document.getElementById(focusSection || "");
     section && section.scrollIntoView({ behavior: "smooth" });
   }, [focusSection]);
 
   return (
-    <div className="about-page">
+    <>
       <section>
         <h2 id="aboutOverview">Overview</h2>
         <p>
@@ -218,8 +218,8 @@ vectors:          eigenvectors (Nq x Nphonons x Natoms x 3 x 2) They are, more r
         <h3>Contact Us</h3>
         <p>If you have any questions about these Terms, please contact us.</p>
       </section>
-    </div>
+    </>
   );
 };
 
-export default AboutPage;
+export default AboutPanel;

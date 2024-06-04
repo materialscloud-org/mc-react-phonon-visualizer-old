@@ -1,6 +1,13 @@
+import { useEffect } from "react";
+
 import "./styles.scss";
 
-const AboutPage = () => {
+const AboutPage = ({ focusSection }: { focusSection: string | null }) => {
+  useEffect(() => {
+    const section = document.getElementById(focusSection || "");
+    section && section.scrollIntoView({ behavior: "smooth" });
+  }, [focusSection]);
+
   return (
     <div className="about-page">
       <section>

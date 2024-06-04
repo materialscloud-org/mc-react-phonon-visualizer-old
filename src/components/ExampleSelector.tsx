@@ -1,9 +1,13 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 
-const ExampleSelector = ({ callback }: { callback: CallableFunction }) => {
+const ExampleSelector = ({
+  formHandler,
+}: {
+  formHandler: React.FormEventHandler;
+}) => {
   const options = ["Silicon", "Diamond"];
   return (
-    <Form>
+    <Form onSubmit={formHandler}>
       <Row>
         <Col>
           <Form.Label htmlFor="exampleSelector">Example</Form.Label>
@@ -17,7 +21,7 @@ const ExampleSelector = ({ callback }: { callback: CallableFunction }) => {
         </Col>
       </Row>
 
-      <Button type="submit" className="mb-2" onClick={() => callback()}>
+      <Button type="submit" className="mb-2">
         Calculate phonon dispersion
       </Button>
     </Form>

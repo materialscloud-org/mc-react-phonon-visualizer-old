@@ -7,7 +7,13 @@ interface FormLabelProps {
   tip: string;
 }
 
-const FileSelector = ({ callback }: { callback: CallableFunction }) => {
+const FileSelector = ({
+  aboutLinkHandler: goToAboutSection,
+  formHandler,
+}: {
+  aboutLinkHandler: CallableFunction;
+  formHandler: React.FormEventHandler<HTMLElement>;
+}) => {
   const [labels, setControls] = useState<FormLabelProps[]>([]);
   const [inputFormat, setInputFormat] = useState("Quantum ESPRESSO");
 
@@ -48,22 +54,26 @@ const FileSelector = ({ callback }: { callback: CallableFunction }) => {
   }, [inputFormat]);
 
   return (
-    <Form>
+    <Form onSubmit={formHandler}>
       <Row>
         <Col>
-          <Form.Label htmlFor="fileSelector">
-            Input format{" "}
-            <i
-              className="bi bi-info-circle-fill"
-              title="See About tab for information on supported file formats"
-            />
-          </Form.Label>
+          <Form.Label htmlFor="fileSelector">Input format*</Form.Label>
         </Col>
         <Col md="8">
           <Form.Select id="fileSelector" onChange={handleSelection}>
             <option>Quantum ESPRESSO</option>
             <option>PhononVis</option>
           </Form.Select>
+        </Col>
+        <Col className="offset-md-4 mt-1 ps-3">
+          *See{" "}
+          <span
+            role="button"
+            className="link-primary"
+            onClick={() => goToAboutSection("aboutSupported")}
+          >
+            supported file formats
+          </span>
         </Col>
       </Row>
 
@@ -82,10 +92,17 @@ const FileSelector = ({ callback }: { callback: CallableFunction }) => {
       ))}
 
       <p>
-        By continuing, you agree with the <strong>terms of use</strong> of this
-        service.
+        By continuing, you agree with the{" "}
+        <span
+          role="button"
+          className="link-primary"
+          onClick={() => goToAboutSection("aboutTerms")}
+        >
+          terms of use
+        </span>{" "}
+        of this service.
       </p>
-      <Button type="submit" className="mb-2" onClick={() => callback()}>
+      <Button type="submit" className="mb-2">
         Calculate phonon dispersion
       </Button>
     </Form>

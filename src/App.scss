@@ -1,3 +1,7 @@
+:root {
+  margin: 1em;
+}
+
 /* overload boostrap tab style */
 .nav-tabs {
   .nav-link {
@@ -17,9 +21,12 @@
       border-bottom: 1px solid white !important;
     }
   }
+
 }
 
-#main-card {
-  border: 1px solid #999;
+.tab-content {
+  margin-top: -1px;
+  border: 1px solid #999 !important;
   box-shadow: var(--bs-box-shadow);
+  padding: 1.5em;
 }

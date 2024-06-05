@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import ScrollToTopButton from "../common/scroll/ScrollToTopButton";
+
 import "./styles.scss";
 
 const AboutPanel = ({ focusSection }: { focusSection: string | null }) => {
@@ -218,6 +220,7 @@ vectors:          eigenvectors (Nq x Nphonons x Natoms x 3 x 2) They are, more r
         <h3>Contact Us</h3>
         <p>If you have any questions about these Terms, please contact us.</p>
       </section>
+      <ScrollToTopButton />
     </>
   );
 };

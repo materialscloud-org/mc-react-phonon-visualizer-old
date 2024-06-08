@@ -5,7 +5,16 @@ const ExampleSelector = ({
 }: {
   formHandler: React.FormEventHandler;
 }) => {
-  const options = ["Silicon", "Diamond"];
+  const options = [
+    { value: "Graphene", label: "C (2D)" },
+    { value: "Bi", label: "Bi (2D)" },
+    { value: "BN", label: "BN (2D)" },
+    { value: "PbI₂", label: "PbI₂ (2D)" },
+    { value: "MoS₂", label: "MoS₂ (2D)" },
+    { value: "PbTe", label: "PbTe (2D)" },
+    { value: "AgNO₂", label: "AgNO₂ (2D)" },
+    { value: "BaTiO₃", label: "BaTiO₃ (3D)" },
+  ];
   return (
     <Form onSubmit={formHandler}>
       <Row>
@@ -15,7 +24,9 @@ const ExampleSelector = ({
         <Col md="8">
           <Form.Select id="exampleSelector">
             {options.map((option, index) => (
-              <option key={index}>{option}</option>
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
             ))}
           </Form.Select>
         </Col>

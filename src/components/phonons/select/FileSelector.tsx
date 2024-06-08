@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
 interface FormLabelProps {
@@ -8,7 +8,7 @@ interface FormLabelProps {
 }
 
 const FileSelector = ({
-  aboutLinkHandler: goToAboutSection,
+  aboutLinkHandler,
   formHandler,
 }: {
   aboutLinkHandler: CallableFunction;
@@ -20,6 +20,14 @@ const FileSelector = ({
   const handleSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setInputFormat(event.target.value);
   };
+
+  const showSupportedFiles = useCallback(() => {
+    aboutLinkHandler("aboutSupported");
+  }, [aboutLinkHandler]);
+
+  const showTermsOfUse = useCallback(() => {
+    aboutLinkHandler("aboutTerms");
+  }, [aboutLinkHandler]);
 
   useEffect(() => {
     if (inputFormat === "Quantum ESPRESSO") {
@@ -70,7 +78,7 @@ const FileSelector = ({
           <span
             role="button"
             className="link-primary"
-            onClick={() => goToAboutSection("aboutSupported")}
+            onClick={showSupportedFiles}
           >
             supported file formats
           </span>
@@ -93,11 +101,7 @@ const FileSelector = ({
 
       <p>
         By continuing, you agree with the{" "}
-        <span
-          role="button"
-          className="link-primary"
-          onClick={() => goToAboutSection("aboutTerms")}
-        >
+        <span role="button" className="link-primary" onClick={showTermsOfUse}>
           terms of use
         </span>{" "}
         of this service.

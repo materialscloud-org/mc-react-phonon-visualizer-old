@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import SelectPanel from "./select/SelectPanel";
 import VisualizerPanel from "./visualize/VisualizerPanel";
@@ -17,6 +17,10 @@ const PhononsPanel = ({
     setCurrentPanel("visualizer");
   };
 
+  const switchToSelectPanel = useCallback(() => {
+    setCurrentPanel("select");
+  }, []);
+
   return (
     <>
       {currentPanel == "select" ? (
@@ -25,7 +29,7 @@ const PhononsPanel = ({
           formHandler={formHandler}
         />
       ) : (
-        <VisualizerPanel callback={() => setCurrentPanel("select")} />
+        <VisualizerPanel callback={switchToSelectPanel} />
       )}
     </>
   );

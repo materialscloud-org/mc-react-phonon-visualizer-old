@@ -1,9 +1,11 @@
 import { Button } from "react-bootstrap";
 
-const VisualizerPanel = ({ callback }: { callback: CallableFunction }) => {
+const VisualizerPanel = ({ callback }: { callback: () => void }) => {
   return (
     <>
-      <Button onClick={() => callback()}>Back to file selection</Button>
+      <Button onClick={callback}>
+        <i className="bi bi-arrow-left" /> Back
+      </Button>
     </>
   );
 };

@@ -16,7 +16,7 @@ const ExampleSelector = ({
     { value: "BaTiO₃", label: "BaTiO₃ (3D)" },
   ];
   return (
-    <Form onSubmit={formHandler}>
+    <Form id="exampleForm" onSubmit={formHandler}>
       <Row>
         <Col>
           <Form.Label htmlFor="exampleSelector">Example</Form.Label>

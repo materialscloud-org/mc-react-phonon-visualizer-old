@@ -62,7 +62,7 @@ const FileSelector = ({
   }, [inputFormat]);
 
   return (
-    <Form onSubmit={formHandler}>
+    <Form id="fileForm" onSubmit={formHandler}>
       <Row>
         <Col>
           <Form.Label htmlFor="fileSelector">Input format*</Form.Label>

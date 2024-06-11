@@ -1,11 +1,13 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 
 import { VisualizerProps } from "../interfaces";
 import AtomicPositionsView from "./AtomicPositionsView";
 import CellView from "./CellView";
 import LatticeParametersView from "./LatticeParametersView";
 import ParameterControls from "./ParameterControls";
+import ParametersContext from "./ParametersContext";
 import PhononBandsView from "./PhononBandsView";
+import useParameters from "./useParameters";
 
 import "./styles.scss";
 
@@ -16,6 +18,9 @@ const VisualizerPanel = ({
   callback: () => void;
   props: VisualizerProps;
 }) => {
+  const parameters = useParameters();
+
+  // dummy data
   const lattice = [
     [1, 0, 0],
     [0, 1, 0],
@@ -25,13 +30,16 @@ const VisualizerPanel = ({
     { label: "O", position: [0, 0.5, 0] },
     { label: "H", position: [0.4, 0.6, 0] },
   ];
+
   return (
     <>
       <Button onClick={callback}>
         <i className="bi bi-arrow-left" /> Back
       </Button>
-      <h1 className="text-center mb-4 mt-3">Phonon dispersion: {props.title}</h1>
-      <Container fluid>
+      <h1 className="text-center mb-4 mt-3">
+        Phonon dispersion: {props.title}
+      </h1>
+      <ParametersContext.Provider value={parameters}>
         <Row className="mb-xxl-4">
           <Col xxl="3" className="visualizer-panel">
             <ParameterControls />
@@ -51,7 +59,7 @@ const VisualizerPanel = ({
             <AtomicPositionsView atoms={atoms} />
           </Col>
         </Row>
-      </Container>
+      </ParametersContext.Provider>
     </>
   );
 };

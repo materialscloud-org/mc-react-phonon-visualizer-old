@@ -4,8 +4,23 @@
   }
 
   @media (max-width: 1400px) {
-    .visualizer-panel {
+    .visualizer-panel:not(:last-child) {
       margin-bottom: 1.5em;
+    }
+  }
+
+  #cellRepetitions {
+    display: flex;
+
+    input:not(:last-child) {
+      margin-right: 1em;
+    }
+  }
+
+  #cameraControls {
+    button {
+      width: 40px;
+      margin-right: 0.25em;
     }
   }
 }

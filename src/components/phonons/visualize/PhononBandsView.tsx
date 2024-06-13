@@ -1,15 +1,10 @@
-import { useContext } from "react";
 import { Card, Col, Form, Row } from "react-bootstrap";
 
-import ParametersContext from "./ParametersContext";
-
-const PhononBandsView = () => {
-  const { setMode } = useContext(ParametersContext);
-
-  const updateMode = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMode(event.target.value);
-  };
-
+const PhononBandsView = ({
+  updateMode,
+}: {
+  updateMode: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
   return (
     <Card>
       <Card.Header>Phonon band structure (select phonon)</Card.Header>

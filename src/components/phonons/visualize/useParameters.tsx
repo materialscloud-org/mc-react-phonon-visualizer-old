@@ -11,7 +11,6 @@ const useParameters = () => {
   const [showVectors, setShowVectors] = useState(true);
   const [speed, setSpeed] = useState(0.25);
   const [isAnimated, setIsAnimated] = useState(true);
-  const [mode, setMode] = useState("Γ");
 
   return {
     nx,
@@ -34,8 +33,6 @@ const useParameters = () => {
     setSpeed,
     isAnimated,
     setIsAnimated,
-    mode,
-    setMode,
   };
 };
 

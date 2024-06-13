@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 
 import ParametersContext from "./ParametersContext";
 
-const CellView = () => {
+const CellView = ({ mode }: { mode: string }) => {
   const {
     nx,
     ny,
@@ -15,7 +15,6 @@ const CellView = () => {
     showVectors,
     speed,
     isAnimated,
-    mode,
   } = useContext(ParametersContext);
   return (
     <Card>

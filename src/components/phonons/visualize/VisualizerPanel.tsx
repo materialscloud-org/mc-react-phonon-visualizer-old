@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 
 import { VisualizerProps } from "../interfaces";
@@ -19,6 +20,14 @@ const VisualizerPanel = ({
   props: VisualizerProps;
 }) => {
   const parameters = useParameters();
+  const [mode, setMode] = useState("Γ");
+
+  const updateMode = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setMode(event.target.value);
+    },
+    [setMode]
+  );
 
   // dummy data
   const lattice = [
@@ -45,10 +54,10 @@ const VisualizerPanel = ({
             <ParameterControls />
           </Col>
           <Col xxl="4" className="visualizer-panel">
-            <CellView />
+            <CellView mode={mode} />
           </Col>
           <Col xxl="5" className="visualizer-panel">
-            <PhononBandsView />
+            <PhononBandsView updateMode={updateMode} />
           </Col>
         </Row>
         <Row>

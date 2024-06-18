@@ -23,6 +23,7 @@ const PhononsPanel = ({
     if (!example || !example.value) {
       throw new Error("Example not found");
     }
+    setVisualizerProps({} as VisualizerProps);
     const result = await axios.post(`${API_ROOT}/process_example`, {
       example: example.value,
     });

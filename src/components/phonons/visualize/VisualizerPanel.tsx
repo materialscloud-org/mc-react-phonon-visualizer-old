@@ -1,5 +1,7 @@
 import { useCallback, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
+
+import { PlotMouseEvent } from "plotly.js";
 
 import { VisualizerProps } from "../interfaces";
 import AtomicPositionsView from "./AtomicPositionsView";
@@ -23,22 +25,14 @@ const VisualizerPanel = ({
   const [mode, setMode] = useState("Γ");
 
   const updateMode = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setMode(event.target.value);
+    (event: PlotMouseEvent) => {
+      const point = `(${event.points[0].x}, ${event.points[0].y})`;
+      setMode(point);
     },
     [setMode]
   );
 
-  // dummy data
-  const lattice = [
-    [1, 0, 0],
-    [0, 1, 0],
-    [0, 0, 1],
-  ];
-  const atoms = [
-    { label: "O", position: [0, 0.5, 0] },
-    { label: "H", position: [0.4, 0.6, 0] },
-  ];
+  if (!props.title) return <></>;
 
   return (
     <>
@@ -49,25 +43,35 @@ const VisualizerPanel = ({
         Phonon dispersion: {props.title}
       </h1>
       <ParametersContext.Provider value={parameters}>
-        <Row className="mb-xxl-4">
-          <Col xxl="3" className="visualizer-panel">
-            <ParameterControls />
-          </Col>
-          <Col xxl="4" className="visualizer-panel">
-            <CellView mode={mode} />
-          </Col>
-          <Col xxl="5" className="visualizer-panel">
-            <PhononBandsView updateMode={updateMode} />
-          </Col>
-        </Row>
-        <Row>
-          <Col xxl="6" className="visualizer-panel">
-            <LatticeParametersView lattice={lattice} />
-          </Col>
-          <Col xxl="6" className="visualizer-panel">
-            <AtomicPositionsView atoms={atoms} />
-          </Col>
-        </Row>
+        <Container fluid>
+          <Row className="mb-xxl-4">
+            <Col xxl="3" className="visualizer-panel">
+              <ParameterControls />
+            </Col>
+            <Col xxl="4" className="visualizer-panel">
+              <CellView mode={mode} />
+            </Col>
+            <Col xxl="5" className="visualizer-panel">
+              <PhononBandsView
+                distances={props.distances}
+                highSymPoints={props.highsym_qpts}
+                eigenvalues={props.eigenvalues}
+                updateMode={updateMode}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col xxl="6" className="visualizer-panel">
+              <LatticeParametersView lattice={props.lattice} />
+            </Col>
+            <Col xxl="6" className="visualizer-panel">
+              <AtomicPositionsView
+                types={props.atom_types}
+                positions={props.atom_pos_car}
+              />
+            </Col>
+          </Row>
+        </Container>
       </ParametersContext.Provider>
     </>
   );

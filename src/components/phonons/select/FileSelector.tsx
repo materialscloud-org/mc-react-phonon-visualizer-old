@@ -52,7 +52,7 @@ const FileSelector = ({
       setControls([
         {
           id: "phononVisJson",
-          text: "Phonon Visualizer JSON",
+          text: "Visualizer JSON",
           tip: "A custom visualizer configuration file",
         },
       ]);

@@ -1,9 +1,13 @@
 import { Card, Table } from "react-bootstrap";
 
+import { Position } from "../interfaces";
+
 const AtomicPositionsView = ({
-  atoms,
+  types,
+  positions,
 }: {
-  atoms: { label: string; position: number[] }[];
+  types: string[];
+  positions: Position[];
 }) => {
   return (
     <Card>
@@ -11,10 +15,10 @@ const AtomicPositionsView = ({
       <Card.Body>
         <Table className="text-center mb-0" striped bordered>
           <tbody>
-            {atoms.map((atom, i) => (
+            {types.map((type, i) => (
               <tr key={i}>
-                <td>{atom.label}</td>
-                {atom.position.map((coordinate, j) => (
+                <td>{type}</td>
+                {positions[i].map((coordinate, j) => (
                   <td key={j}>{coordinate.toFixed(3)}</td>
                 ))}
               </tr>

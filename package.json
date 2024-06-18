@@ -13,12 +13,15 @@
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
+    "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "mc-react-header": "^0.3.1",
     "mc-react-library": "^0.3.0",
+    "plotly.js": "^2.33.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
+    "react-plotly.js": "^2.6.0",
     "react-router-dom": "^6.23.1",
     "react-router-hash-link": "^2.4.3",
     "sass": "^1.77.4"
@@ -26,6 +29,7 @@
   "devDependencies": {
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
+    "@types/react-plotly.js": "^2.6.3",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react-swc": "^3.5.0",

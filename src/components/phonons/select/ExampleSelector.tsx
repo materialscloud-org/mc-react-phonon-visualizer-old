@@ -6,14 +6,14 @@ const ExampleSelector = ({
   formHandler: React.FormEventHandler;
 }) => {
   const options = [
-    { value: "Graphene", label: "C (2D)" },
     { value: "Bi", label: "Bi (2D)" },
     { value: "BN", label: "BN (2D)" },
-    { value: "PbI₂", label: "PbI₂ (2D)" },
-    { value: "MoS₂", label: "MoS₂ (2D)" },
+    { value: "C", label: "C (graphene) (2D)" },
+    { value: "PbI2", label: "PbI₂ (2D)" },
+    { value: "MoS2-MoS2", label: "MoS₂ (2D)" },
     { value: "PbTe", label: "PbTe (2D)" },
-    { value: "AgNO₂", label: "AgNO₂ (2D)" },
-    { value: "BaTiO₃", label: "BaTiO₃ (3D)" },
+    { value: "AgNO2", label: "AgNO₂ (2D)" },
+    { value: "BaTiO3", label: "BaTiO₃ (3D)" },
   ];
   return (
     <Form id="exampleForm" onSubmit={formHandler}>

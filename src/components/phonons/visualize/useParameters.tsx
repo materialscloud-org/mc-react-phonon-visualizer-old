@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 const useParameters = () => {
-  const [nx, setNx] = useState(5);
-  const [ny, setNy] = useState(5);
+  const [nx, setNx] = useState(1);
+  const [ny, setNy] = useState(1);
   const [nz, setNz] = useState(1);
   const [cameraDirection, setCameraDirection] = useState("z");
   const [showCell, setShowCell] = useState(true);

@@ -45,7 +45,7 @@ const VisualizerPanel = ({
           <Container fluid>
             <Row className="mb-xxl-4">
               <Col xxl="3" className="visualizer-panel">
-                <ParameterControls />
+                <ParameterControls repetitions={props.repetitions} />
               </Col>
               <Col xxl="4" className="visualizer-panel">
                 <CellView mode={mode} />

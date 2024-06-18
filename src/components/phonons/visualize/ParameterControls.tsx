@@ -1,15 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 
 import ParametersContext from "./ParametersContext";
 
-const ParameterControls = () => {
+const ParameterControls = ({ repetitions }: { repetitions: number[] }) => {
   const {
-    nx,
     setNx,
-    ny,
     setNy,
-    nz,
     setNz,
     setCameraDirection,
     showCell,
@@ -74,6 +71,18 @@ const ParameterControls = () => {
     setIsAnimated((prevState) => !prevState);
   };
 
+  useEffect(() => {
+    setNx(repetitions[0]);
+    setNy(repetitions[1]);
+    setNz(repetitions[2]);
+    ["X", "Y", "Z"].forEach((axis, index) => {
+      const control = document.getElementById(
+        `cellRepetition${axis}`
+      ) as HTMLInputElement;
+      control.value = String(repetitions[index]);
+    });
+  }, [repetitions, setNx, setNy, setNz]);
+
   return (
     <Card>
       <Card.Header>Settings</Card.Header>
@@ -82,21 +91,9 @@ const ParameterControls = () => {
           <Form.Group as={Row}>
             <Form.Label>Repetitions</Form.Label>
             <Col xs="8" id="cellRepetitions">
-              <Form.Control
-                id="cellRepetitionX"
-                type="number"
-                defaultValue={nx}
-              />
-              <Form.Control
-                id="cellRepetitionY"
-                type="number"
-                defaultValue={ny}
-              />
-              <Form.Control
-                id="cellRepetitionZ"
-                type="number"
-                defaultValue={nz}
-              />
+              <Form.Control id="cellRepetitionX" type="number" min="1" />
+              <Form.Control id="cellRepetitionY" type="number" min="1" />
+              <Form.Control id="cellRepetitionZ" type="number" min="1" />
             </Col>
             <Col>
               <Button type="submit">

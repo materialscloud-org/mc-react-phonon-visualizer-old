@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useCallback, useContext, useState } from "react";
 import { Card } from "react-bootstrap";
 
 import ParametersContext from "./ParametersContext";
 
 const CellView = ({ mode }: { mode: string }) => {
+  const [isInteractive, setIsInteractive] = useState(false);
   const {
     nx,
     ny,
@@ -16,10 +17,25 @@ const CellView = ({ mode }: { mode: string }) => {
     speed,
     isAnimated,
   } = useContext(ParametersContext);
+
+  const toggleOverlay = useCallback(() => {
+    setIsInteractive((prevState) => !prevState);
+  }, []);
+
+  const overlay = (
+    <div className="overlay-div">
+      <span>
+        Double-click to toggle interactions on and off <br />{" "}
+        <small>(This feature is not available on iPad and iPhone)</small>
+      </span>
+    </div>
+  );
+
   return (
     <Card>
       <Card.Header>Drag to rotate, scroll to zoom</Card.Header>
-      <Card.Body>
+      <Card.Body onDoubleClick={toggleOverlay}>
+        {!isInteractive && overlay}
         <p>nx: {nx}</p>
         <p>ny: {ny}</p>
         <p>nz: {nz}</p>

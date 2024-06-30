@@ -1,12 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import { memo, useContext } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 
 import ParametersContext from "./ParametersContext";
 
-const ParameterControls = ({ repetitions }: { repetitions: number[] }) => {
+const ParameterControls = () => {
   const {
+    nx,
     setNx,
+    ny,
     setNy,
+    nz,
     setNz,
     setCameraDirection,
     showCell,
@@ -71,18 +74,6 @@ const ParameterControls = ({ repetitions }: { repetitions: number[] }) => {
     setIsAnimated((prevState) => !prevState);
   };
 
-  useEffect(() => {
-    setNx(repetitions[0]);
-    setNy(repetitions[1]);
-    setNz(repetitions[2]);
-    ["X", "Y", "Z"].forEach((axis, index) => {
-      const control = document.getElementById(
-        `cellRepetition${axis}`
-      ) as HTMLInputElement;
-      control.value = String(repetitions[index]);
-    });
-  }, [repetitions, setNx, setNy, setNz]);
-
   return (
     <Card>
       <Card.Header>Settings</Card.Header>
@@ -91,9 +82,24 @@ const ParameterControls = ({ repetitions }: { repetitions: number[] }) => {
           <Form.Group as={Row}>
             <Form.Label>Repetitions</Form.Label>
             <Col xs="8" id="cellRepetitions">
-              <Form.Control id="cellRepetitionX" type="number" min="1" />
-              <Form.Control id="cellRepetitionY" type="number" min="1" />
-              <Form.Control id="cellRepetitionZ" type="number" min="1" />
+              <Form.Control
+                id="cellRepetitionX"
+                defaultValue={nx}
+                type="number"
+                min="1"
+              />
+              <Form.Control
+                id="cellRepetitionY"
+                defaultValue={ny}
+                type="number"
+                min="1"
+              />
+              <Form.Control
+                id="cellRepetitionZ"
+                defaultValue={nz}
+                type="number"
+                min="1"
+              />
             </Col>
             <Col>
               <Button type="submit">
@@ -195,4 +201,6 @@ const ParameterControls = ({ repetitions }: { repetitions: number[] }) => {
   );
 };
 
-export default ParameterControls;
+const MemoizedParameterControls = memo(ParameterControls);
+
+export default MemoizedParameterControls;

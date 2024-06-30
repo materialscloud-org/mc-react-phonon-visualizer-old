@@ -1,13 +1,12 @@
 import { memo } from "react";
 import { Card } from "react-bootstrap";
-
 import Plot from "react-plotly.js";
 
 import { PlotMouseEvent } from "plotly.js";
 
 import { HighSymPoint } from "../interfaces";
 
-export default memo(function PhononBandsView({
+const PhononBandsView = ({
   distances,
   highSymPoints,
   eigenvalues,
@@ -17,7 +16,7 @@ export default memo(function PhononBandsView({
   highSymPoints: HighSymPoint[];
   eigenvalues: number[][];
   updateMode: (event: PlotMouseEvent) => void;
-}) {
+}) => {
   const bands = eigenvalues[0].map((_, colIndex) =>
     eigenvalues.map((row) => row[colIndex])
   );
@@ -87,4 +86,8 @@ export default memo(function PhononBandsView({
       </Card.Body>
     </Card>
   );
-});
+};
+
+const MemoizedPhononBandsView = memo(PhononBandsView);
+
+export default MemoizedPhononBandsView;

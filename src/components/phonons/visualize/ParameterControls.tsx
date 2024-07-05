@@ -36,18 +36,49 @@ const ParameterControls = () => {
   };
 
   const updateCamera = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setCameraDirection((event.target as HTMLButtonElement).value);
+    const camera = event.currentTarget.value;
+    switch (camera) {
+      case "x":
+        setCameraDirection([1, 0, 0]);
+        break;
+      case "y":
+        setCameraDirection([0, 1, 0]);
+        break;
+      case "z":
+        setCameraDirection([0, 0, 1]);
+        break;
+      default:
+        break;
+    }
   };
 
   const toggleCell = (event: React.ChangeEvent<HTMLInputElement>) => {
     setShowCell(event.target.checked);
   };
 
-  const updateAmplitude = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAmplitudeTextInput = (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+    const textInput = event.currentTarget.querySelector("#amplitudeText");
+    if (!textInput) {
+      throw new Error("Text input not found");
+    }
+    const inputValue = parseFloat((textInput as HTMLInputElement).value);
+    updateAmplitude(inputValue);
+  };
+
+  const handleAmplitudeSliderInput = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (event.target.value === "" || isNaN(parseFloat(event.target.value))) {
       return;
     }
     const inputValue = parseFloat(event.target.value);
+    updateAmplitude(inputValue);
+  };
+
+  const updateAmplitude = (inputValue: number) => {
     const value = inputValue < 0 ? 0 : inputValue > 1 ? 1 : inputValue;
     setAmplitude(value);
     const range = document.getElementById("amplitudeRange") as HTMLInputElement;
@@ -137,6 +168,8 @@ const ParameterControls = () => {
               />
             </Col>
           </Form.Group>
+        </Form>
+        <Form id="amplitudeControls" onSubmit={handleAmplitudeTextInput}>
           <Form.Group as={Row}>
             <Form.Label>Amplitude</Form.Label>
             <Col xs="8">
@@ -146,28 +179,29 @@ const ParameterControls = () => {
                 max="1"
                 step="0.01"
                 defaultValue={amplitude}
-                onChange={updateAmplitude}
+                onChange={handleAmplitudeSliderInput}
               />
             </Col>
             <Col>
               <Form.Control
                 id="amplitudeText"
                 type="number"
-                min="0"
+                min="0.01"
                 max="1"
-                step="0.01"
+                step="0.001"
                 defaultValue={amplitude}
-                onChange={updateAmplitude}
               />
             </Col>
           </Form.Group>
+        </Form>
+        <Form>
           <Form.Group as={Row}>
             <Form.Label>Vectors</Form.Label>
             <Col xs="8">
               <Form.Range
-                min="0"
-                max="1"
-                step="0.01"
+                min="1"
+                max="5"
+                step="0.1"
                 defaultValue={vectorLength}
                 onChange={updateVectors}
               />
@@ -184,7 +218,7 @@ const ParameterControls = () => {
             <Form.Label>Speed</Form.Label>
             <Col xs="8">
               <Form.Range
-                min="0"
+                min="0.01"
                 max="1"
                 step="0.01"
                 defaultValue={speed}

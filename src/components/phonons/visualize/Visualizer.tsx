@@ -14,14 +14,15 @@ import useParameters from "./useParameters";
 
 const Visualizer = ({ props }: { props: VisualizerProps }) => {
   const parameters = useParameters(props.repetitions);
-  const [mode, setMode] = useState("");
+  const [mode, setMode] = useState<number[]>([0, 0]);
 
   const updateMode = useCallback(
     (event: PlotMouseEvent) => {
-      const point = `(${event.points[0].x}, ${event.points[0].y})`;
-      setMode(point);
+      const q = props.distances.indexOf(event.points[0].x as number);
+      const e = props.eigenvalues[q].indexOf(event.points[0].y as number);
+      setMode([q, e]);
     },
-    [setMode]
+    [props]
   );
 
   return (
@@ -32,7 +33,7 @@ const Visualizer = ({ props }: { props: VisualizerProps }) => {
             <ParameterControls />
           </Col>
           <Col xxl="4" className="visualizer-panel">
-            <CellView mode={mode} />
+            <CellView props={props} mode={mode} />
           </Col>
           <Col xxl="5" className="visualizer-panel">
             <PhononBandsView

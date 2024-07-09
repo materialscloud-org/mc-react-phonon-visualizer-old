@@ -85,8 +85,9 @@ const CellView = ({
     weas.avr.fromPhononMode({
       atoms: atoms,
       eigenvectors: props.vectors[q][e],
-      amplitude: amplitude,
-      nFrames: 20,
+      amplitude: amplitude*5,
+      nframes: 30/speed,
+      kpoint: props.qpoints[q],
       repeat: [nx, ny, nz],
     });
     weas.avr.boundary = [
@@ -98,7 +99,7 @@ const CellView = ({
     weas.avr.bondedAtoms = true;
     weas.avr.atomScale = 0.1;
     weas.avr.bondManager.hideLongBonds = false;
-    weas.avr.frameDuration = 1 / speed;
+    weas.avr.frameDuration = 5 / speed;
     weas.avr.tjs.updateCameraAndControls({ direction: cameraDirection });
     weas.avr.VFManager.addSetting({
       origins: "positions",
@@ -106,7 +107,8 @@ const CellView = ({
       color: "red",
       radius: 0.1,
     });
-    weas.avr.showVectorField = true;
+    weas.avr.showCell = showCell;
+    weas.avr.VFManager.show = showVectors;
     weas.avr.drawModels();
     weas.render();
   }, [
@@ -114,6 +116,8 @@ const CellView = ({
     mode,
     props,
     speed,
+    showCell,
+    showVectors,
     cameraDirection,
     nx,
     ny,

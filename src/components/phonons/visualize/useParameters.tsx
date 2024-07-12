@@ -5,10 +5,10 @@ const useParameters = (repetitions: number[]) => {
   const [nx, setNx] = useState(Nx);
   const [ny, setNy] = useState(Ny);
   const [nz, setNz] = useState(Nz);
-  const [cameraDirection, setCameraDirection] = useState("z");
+  const [cameraDirection, setCameraDirection] = useState([0, 0, 1]);
   const [showCell, setShowCell] = useState(true);
   const [amplitude, setAmplitude] = useState(0.65);
-  const [vectorLength, setVectorLength] = useState(0.35);
+  const [vectorLength, setVectorLength] = useState(3.5);
   const [showVectors, setShowVectors] = useState(true);
   const [speed, setSpeed] = useState(0.25);
   const [isAnimated, setIsAnimated] = useState(true);

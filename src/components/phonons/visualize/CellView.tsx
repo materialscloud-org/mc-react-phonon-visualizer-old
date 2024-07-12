@@ -1,9 +1,16 @@
 import { useCallback, useContext, useState } from "react";
 import { Card } from "react-bootstrap";
 
+import { VisualizerProps } from "../interfaces";
 import ParametersContext from "./ParametersContext";
 
-const CellView = ({ mode }: { mode: string }) => {
+const CellView = ({
+  props,
+  mode,
+}: {
+  props: VisualizerProps;
+  mode: number[];
+}) => {
   const [isInteractive, setIsInteractive] = useState(false);
   const {
     nx,

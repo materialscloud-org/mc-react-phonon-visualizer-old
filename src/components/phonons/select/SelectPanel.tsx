@@ -3,7 +3,7 @@ import { Card, Col, Row } from "react-bootstrap";
 import ExampleSelector from "./ExampleSelector";
 import FileSelector from "./FileSelector";
 
-import "./styles.scss";
+import "./SelectPanel.scss";
 
 const SelectPanel = ({
   aboutLinkHandler,

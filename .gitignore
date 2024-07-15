@@ -14,6 +14,7 @@ dist-ssr
 *.local
 /.pnp
 .pnp.js
+.venv
 
 # production
 /build

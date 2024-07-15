@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import "./styles.scss";
+import "./ScrollToTopButton.scss";
 
 const ScrollToTopButton = ({ threshold = 200 }: { threshold?: number }) => {
   const [showScroll, setShowScroll] = useState(false);

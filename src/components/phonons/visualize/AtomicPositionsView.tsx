@@ -1,13 +1,13 @@
 import { Card, Table } from "react-bootstrap";
 
-import { Position } from "../interfaces";
+import { Vector } from "../interfaces";
 
 const AtomicPositionsView = ({
   types,
   positions,
 }: {
   types: string[];
-  positions: Position[];
+  positions: Vector[];
 }) => {
   return (
     <Card>

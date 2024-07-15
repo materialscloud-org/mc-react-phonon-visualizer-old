@@ -1,5 +1,5 @@
 export type LatticeVector = [number, number, number];
-export type Position = [number, number, number];
+export type Vector = [number, number, number];
 export type HighSymPoint = [number, string];
 
 export interface VisualizerProps {
@@ -10,12 +10,12 @@ export interface VisualizerProps {
   atom_types: string[];
   atom_numbers: number[];
   formula: string;
-  qpoints: Position[];
+  qpoints: Vector[];
   repetitions: number[];
-  atom_pos_car: Position[];
-  atom_pos_red: Position[];
+  atom_pos_car: Vector[];
+  atom_pos_red: Vector[];
   eigenvalues: number[][];
   distances: number[];
   highsym_qpts: HighSymPoint[];
-  vectors: number[][][][];
+  vectors: number[][][][][];
 }

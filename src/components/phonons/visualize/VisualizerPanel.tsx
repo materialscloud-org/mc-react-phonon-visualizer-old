@@ -3,7 +3,7 @@ import { Button, Spinner } from "react-bootstrap";
 import { VisualizerProps } from "../interfaces";
 import Visualizer from "./Visualizer";
 
-import "./styles.scss";
+import "./VisualizerPanel.scss";
 
 const VisualizerPanel = ({
   callback,

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import ScrollToTopButton from "../common/scroll/ScrollToTopButton";
 
-import "./styles.scss";
+import "./AboutPanel.scss";
 
 const AboutPanel = ({ focusSection }: { focusSection: string | null }) => {
   useEffect(() => {

@@ -1,5 +1,7 @@
 # Interactive phonons visualizer
 
+**Note: This repo has been merged to https://github.com/materialscloud-org/interactive-phonon-visualizer, and this version is archived.**
+
 This repository houses the Materials Cloud interactive phonons visualizer React app.
 
 ### Development
